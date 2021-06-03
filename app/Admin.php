@@ -2,14 +2,19 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use Notifiable;
+
+
+    protected $guard = "admin";
+    protected $table = "users";
 
     /**
      * The attributes that are mass assignable.
@@ -29,20 +34,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
     protected static function booted() {
 
         static::addGlobalScope('user_type', function(Builder $builder) {
 
-            $builder->where('user_type', 'user');
+            $builder->where('user_type', 'admin');
         });
     }
+
 }
