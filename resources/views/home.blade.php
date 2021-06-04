@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    You are Logged in!
+                    Welcome! {{ Auth::user()->name }}
+                    <br>
+
+                    You are Logged in as {{ Auth::user()->user_type }} !
                 </div>
             </div>
         </div>

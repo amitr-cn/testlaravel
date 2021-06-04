@@ -20,7 +20,7 @@ Route::namespace("Admin")->prefix('admin')->group(function() {
     Route::namespace('Auth')->group(function() {
         Route::get('/login', 'LoginController@showLoginForm')->name('admin.login');
         Route::post('/login', 'LoginController@login');
-        Route::post('logout', 'LoginController@logout')->name('admin.logout');
+        Route::post('/logout', 'LoginController@logout')->name('admin.logout');
     });
 });
 
